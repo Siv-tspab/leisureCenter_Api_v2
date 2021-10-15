@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\LeisureCenter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,22 +20,14 @@ class LeisureCenterRepository extends ServiceEntityRepository
         parent::__construct($registry, LeisureCenter::class);
     }
 
-    // /**
-    //  * @return LeisureCenter[] Returns an array of LeisureCenter objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Query Returns query of LeisureCenters
+     */
+    public function getFindAllQuery(): Query
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->getQuery();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?LeisureCenter
