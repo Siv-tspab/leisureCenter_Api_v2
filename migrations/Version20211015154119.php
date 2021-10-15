@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20211013142110 extends AbstractMigration
+final class Version20211015154119 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,7 +21,7 @@ final class Version20211013142110 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE leisure_category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE leisure_center (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, address VARCHAR(255) NOT NULL, url VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE leisure_center (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, address VARCHAR(255) NOT NULL, url VARCHAR(255) DEFAULT NULL, coordinates LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE leisure_center_leisure_category (leisure_center_id INT NOT NULL, leisure_category_id INT NOT NULL, INDEX IDX_1788261C77458AFB (leisure_center_id), INDEX IDX_1788261CACA9AD4A (leisure_category_id), PRIMARY KEY(leisure_center_id, leisure_category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE leisure_center_leisure_category ADD CONSTRAINT FK_1788261C77458AFB FOREIGN KEY (leisure_center_id) REFERENCES leisure_center (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE leisure_center_leisure_category ADD CONSTRAINT FK_1788261CACA9AD4A FOREIGN KEY (leisure_category_id) REFERENCES leisure_category (id) ON DELETE CASCADE');
