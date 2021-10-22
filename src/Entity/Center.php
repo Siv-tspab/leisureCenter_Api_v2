@@ -2,76 +2,80 @@
 
 namespace App\Entity;
 
-use App\Repository\LeisureCenterRepository;
+use App\Repository\CenterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+
 
 /**
- * @ORM\Entity(repositoryClass=LeisureCenterRepository::class)
+ * @ORM\Entity(repositoryClass=CenterRepository::class)
+ * 
+ * @ExclusionPolicy("all")
  */
-class LeisureCenter
+class Center
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * 
-     * @Serializer\Groups({"list"})
+     * @Expose
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * 
-     * @Serializer\Groups({"list","detail"})
+     * @Expose
      */
     private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * 
-     * @Serializer\Groups({"list","detail"})
+     * @Expose
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
      * 
-     * @Serializer\Groups({"list","detail"})
+     * @Expose
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * 
-     * @Serializer\Groups({"list","detail"})
+     * @Expose
      */
     private $url;
 
     /**
      * @ORM\Column(type="array")
      * 
-     * @Serializer\Groups({"list","detail"})
+     * @Expose
      */
     private $coordinates = [];
 
     /**
-     * @Serializer\Groups({"list","detail"})
+     * @Expose
      */
     private $weather = [];
 
     /**
-     * @ORM\ManyToMany(targetEntity=LeisureCategory::class, inversedBy="leisureCenters")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="centers")
      * 
-     * @Serializer\Groups({"list","detail"})
+     * @Expose
      */
-    private $leisureCategory;
+    private $category;
 
     public function __construct()
     {
-        $this->leisureCategory = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,7 +148,7 @@ class LeisureCenter
         return $this->weather;
     }
 
-    public function setWeather(?array $weather): self
+    public function setWeather(array $weather): self
     {
         $this->weather = $weather;
 
@@ -152,25 +156,25 @@ class LeisureCenter
     }
 
     /**
-     * @return Collection|LeisureCategory[]
+     * @return Collection|Category[]
      */
-    public function getLeisureCategory(): Collection
+    public function getCategory(): Collection
     {
-        return $this->leisureCategory;
+        return $this->category;
     }
 
-    public function addLeisureCategory(LeisureCategory $leisureCategory): self
+    public function addCategory(Category $category): self
     {
-        if (!$this->leisureCategory->contains($leisureCategory)) {
-            $this->leisureCategory[] = $leisureCategory;
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
         }
 
         return $this;
     }
 
-    public function removeLeisureCategory(LeisureCategory $leisureCategory): self
+    public function removeCategory(Category $category): self
     {
-        $this->leisureCategory->removeElement($leisureCategory);
+        $this->category->removeElement($category);
 
         return $this;
     }
