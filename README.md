@@ -6,11 +6,11 @@ A simple exemple of a leisure center Api build with API Platfom.
 Start by cloning the repository with the following command :
 
 ```
-$ git clone https://github.com/Siv-tspab/leisureCenter_Api_v2.git
+git clone https://github.com/Siv-tspab/leisureCenter_Api_v2.git
 ```
 Then:
 ```
-$ composer install
+composer install
 ```
 
 Make sure that your server use PHP 8.
