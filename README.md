@@ -46,8 +46,8 @@ MB_API_KEY="xx.XXXXXxxxxXXXxxXxXXXxXxxxXXxXxXXxXXXXxxXXXxXxxXxxXXXxxxXXXxXX.XxXx
 
 ## How it's work
 
-There's no documentation for now,
-you can make request these routes:
+The documentation is available on swagger and json document at these address:
+- https://{your_server}/doc
+- https://{your_server}/doc.json
 
-- /leisureCenters : GET / POST / PATCH / DELETE
-- /leisurecategory : GET 
+All the routes are referenced here, you can test with an http client or with the sawgger_ui.
