@@ -24,19 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `leisure_category`
+-- Structure de la table `category`
 --
 
-CREATE TABLE `leisure_category` (
+CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `leisure_category`
+-- Déchargement des données de la table `category`
 --
 
-INSERT INTO `leisure_category` (`id`, `name`) VALUES
+INSERT INTO `category` (`id`, `name`) VALUES
 (1, 'Kitesurf'),
 (2, 'Canoë'),
 (3, 'Wakeboard'),
@@ -51,10 +51,10 @@ INSERT INTO `leisure_category` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `leisure_center`
+-- Structure de la table `center`
 --
 
-CREATE TABLE `leisure_center` (
+CREATE TABLE `center` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -63,10 +63,10 @@ CREATE TABLE `leisure_center` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `leisure_center`
+-- Déchargement des données de la table `center`
 --
 
-INSERT INTO `leisure_center` (`id`, `name`, `description`, `address`, `url`, `coordinates`) VALUES
+INSERT INTO `center` (`id`, `name`, `description`, `address`, `url`, `coordinates`) VALUES
 (1, 'Solo Escalade', 'SOLO Escalade est une salle de sport pour une remise en forme ludique ou pour un entraînement intensif. Dans une ambiance lumineuse et colorée, bougez en 3 dimensions !', '131, chemin du Sang de Serp 31200 Toulouse', 'http://www.soloescalade.fr/', 'a:2:{i:0;d:1.422459;i:1;d:43.620988;}'),
 (2, 'WAM PARK - Toulouse - Sesquières', 'Une base de loisirs nouvelle génération : grand et petit téléski, terrasse, water games et bien plus!', 'Allée des foulques 31200 Toulouse', 'http://www.wampark.fr/', 'a:2:{i:0;d:1.412745;i:1;d:43.653701;}'),
 (3, 'Canoë Kayak Toulousain', "Le CKT est une association dont l'activité principale est l'enseignement du Canoë-Kayak. Les adhérents disposent de cours réguliers pour acquérir les techniques dans différentes formes de pratique.", '16 chemin de la Loge 31400 Toulouse', 'http://www.cktoulousain.fr/', 'a:2:{i:0;d:1.434442;i:1;d:43.574347;}'),
@@ -88,19 +88,19 @@ INSERT INTO `leisure_center` (`id`, `name`, `description`, `address`, `url`, `co
 -- --------------------------------------------------------
 
 --
--- Structure de la table `leisure_center_leisure_category`
+-- Structure de la table `center_category`
 --
 
-CREATE TABLE `leisure_center_leisure_category` (
-  `leisure_center_id` int(11) NOT NULL,
-  `leisure_category_id` int(11) NOT NULL
+CREATE TABLE `center_category` (
+  `center_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `leisure_center_leisure_category`
+-- Déchargement des données de la table `center_category`
 --
 
-INSERT INTO `leisure_center_leisure_category` (`leisure_center_id`, `leisure_category_id`) VALUES
+INSERT INTO `center_category` (`center_id`, `category_id`) VALUES
 (1, 5),
 (2, 3),
 (3, 2),
@@ -125,24 +125,24 @@ INSERT INTO `leisure_center_leisure_category` (`leisure_center_id`, `leisure_cat
 --
 
 --
--- Index pour la table `leisure_category`
+-- Index pour la table `category`
 --
-ALTER TABLE `leisure_category`
+ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `leisure_center`
+-- Index pour la table `center`
 --
-ALTER TABLE `leisure_center`
+ALTER TABLE `center`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `leisure_center_leisure_category`
+-- Index pour la table `center_category`
 --
-ALTER TABLE `leisure_center_leisure_category`
-  ADD PRIMARY KEY (`leisure_center_id`,`leisure_category_id`),
-  ADD KEY `IDX_1788261C77458AFB` (`leisure_center_id`),
-  ADD KEY `IDX_1788261CACA9AD4A` (`leisure_category_id`);
+ALTER TABLE `center_category`
+  ADD PRIMARY KEY (`center_id`,`category_id`),
+  ADD KEY `IDX_1788261C77458AFB` (`center_id`),
+  ADD KEY `IDX_1788261CACA9AD4A` (`category_id`);
 
 
 --
@@ -150,15 +150,15 @@ ALTER TABLE `leisure_center_leisure_category`
 --
 
 --
--- AUTO_INCREMENT pour la table `leisure_category`
+-- AUTO_INCREMENT pour la table `category`
 --
-ALTER TABLE `leisure_category`
+ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT pour la table `leisure_center`
+-- AUTO_INCREMENT pour la table `center`
 --
-ALTER TABLE `leisure_center`
+ALTER TABLE `center`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 
@@ -167,11 +167,11 @@ ALTER TABLE `leisure_center`
 --
 
 --
--- Contraintes pour la table `leisure_center_leisure_category`
+-- Contraintes pour la table `center_category`
 --
-ALTER TABLE `leisure_center_leisure_category`
-  ADD CONSTRAINT `FK_1788261C77458AFB` FOREIGN KEY (`leisure_center_id`) REFERENCES `leisure_center` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_1788261CACA9AD4A` FOREIGN KEY (`leisure_category_id`) REFERENCES `leisure_category` (`id`) ON DELETE CASCADE;
+ALTER TABLE `center_category`
+  ADD CONSTRAINT `FK_1788261C77458AFB` FOREIGN KEY (`center_id`) REFERENCES `center` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_1788261CACA9AD4A` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

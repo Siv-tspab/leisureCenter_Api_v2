@@ -1,0 +1,11 @@
+nelmio_api_doc:
+    areas:
+        path_patterns: # an array of regexps
+            - ^(?!/doc$)
+        host_patterns:
+            - ^\.
+    documentation:
+        info:
+            title: Leisure Center Api
+            description: The best api to reference your leisure centers!
+            version: 1.0.0

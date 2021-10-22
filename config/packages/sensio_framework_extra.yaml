@@ -1,3 +1,5 @@
 sensio_framework_extra:
     router:
         annotations: false
+    # To avoid conflict with FosRestBundle
+    view: { annotations: true }
