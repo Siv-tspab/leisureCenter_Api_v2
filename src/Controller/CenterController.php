@@ -19,11 +19,6 @@ use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Nelmio\ApiDocBundle\Annotation\Model;
-use Nelmio\ApiDocBundle\Annotation\Security;
-use OpenApi\Annotations as OA;
-use Symfony\Component\Routing\Annotation\Route;
-use Nelmio\ApiDocBundle\Annotation\Operation as Doc;
 
 
 class CenterController extends AbstractFOSRestController
@@ -45,10 +40,6 @@ class CenterController extends AbstractFOSRestController
      *      requirements = {"id" = "\d+"}
      * )
      * @View
-     * @Doc(
-     *     path = "/centers/{id}",
-     *     description="Get the list of all articles."
-     * )
      */
     public function getOne(Center $center): Center
     {
