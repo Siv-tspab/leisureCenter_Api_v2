@@ -1,155 +1,197 @@
 nelmio_api_doc:
-    areas:
-        path_patterns:
-            - ^(?!/doc$)
-        host_patterns:
-            - ^\.
-    documentation:
-        info:
-            title: Leisure Center Api
-            description: The best api to reference your leisure centers!
-            version: 1.0.0
-        paths:
-            /categories:
-                get:
-                    tags:
-                        - Category
-                    summary: Returns a list of all categories.
-                    description: Returns a list of all categories.
-                    responses:
-                        "200":
-                            description: A JSON array of categories.
-                            content:
-                                application/json:
-                                    schema:
-                                        type: array
-                                        items:
-                                            type: object
-            /categories/{id}:
-                get:
-                    tags:
-                        - Category
-                    summary: Returns one category.
-                    description: Returns one category from the given id.
-                    parameters:
-                        - name: id
-                          in: path
-                          required: true
-                          schema:
-                              type: integer
-                          description: Category Id
-                    responses:
-                        "200":
-                            description: A JSON object of category.
-                            content:
-                                application/json:
-                                    schema:
-                                        type: object
-            /centers:
-                get:
-                    tags:
-                        - Center
-                    summary: Returns a list of all centers.
-                    description: Returns a list of all centers, filterable by name and category.
-                    parameters:
-                        - name: name
-                          in: query
-                          required: false
-                          schema:
-                              type: string
-                          description: Full name of part of the name of a center
-                        - name: category
-                          in: query
-                          required: false
-                          schema:
-                              type: integer
-                          description: Category Id
-                    responses:
-                        "200":
-                            description: A JSON array of centers.
-                            content:
-                                application/json:
-                                    schema:
-                                        type: array
-                                        items:
-                                            type: object
-                post:
-                    tags:
-                        - Center
-                    summary: Post a center.
-                    description: Post a center.
-                    requestBody:
-                        description: Center object
-                        required: true
-                        content:
-                            application/json:
-                                schema:
-                                    type: object
-                    responses:
-                        "201":
-                            description: A JSON object of center.
-                            content:
-                                application/json:
-                                    schema:
-                                        type: object
-            /centers/{id}:
-                get:
-                    tags:
-                        - Center
-                    summary: Returns one center.
-                    description: Returns one centers from the given id.
-                    parameters:
-                        - name: id
-                          in: path
-                          required: true
-                          schema:
-                              type: integer
-                          description: Center Id
-                    responses:
-                        "200":
-                            description: A JSON object of center.
-                            content:
-                                application/json:
-                                    schema:
-                                        type: object
-                patch:
-                    tags:
-                        - Center
-                    summary: Patch a center.
-                    description: Patch an existing center.
-                    parameters:
-                        - name: id
-                          in: path
-                          required: true
-                          schema:
-                              type: integer
-                          description: Center Id
-                    requestBody:
-                        description: Partial center object
-                        required: true
-                        content:
-                            application/json:
-                                schema:
-                                    type: object
-                    responses:
-                        "201":
-                            description: A JSON object of center.
-                            content:
-                                application/json:
-                                    schema:
-                                        type: object
-                delete:
-                    tags:
-                        - Center
-                    summary: Delete a center.
-                    description: Delete an existing center.
-                    parameters:
-                        - name: id
-                          in: path
-                          required: true
-                          schema:
-                              type: integer
-                          description: Center Id
-                    responses:
-                        "204":
-                            description: The resource was deleted successfully.
+  areas:
+    path_patterns:
+      - ^(?!/doc$)
+    host_patterns:
+      - ^\.
+  documentation:
+    info:
+      title: Leisure Center Api
+      description: The best api to reference your leisure centers!
+      version: 1.0.0
+    paths:
+      /categories:
+        get:
+          tags:
+            - Category
+          summary: Returns a list of all categories.
+          description: Returns a list of all categories.
+          responses:
+            "200":
+              description: A JSON array of categories.
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      $ref: "#components/schemas/Category"
+      /categories/{id}:
+        get:
+          tags:
+            - Category
+          summary: Returns one category.
+          description: Returns one category from the given id.
+          parameters:
+            - name: id
+              in: path
+              required: true
+              schema:
+                type: integer
+              description: Category Id
+          responses:
+            "200":
+              description: A JSON object of category.
+              content:
+                application/json:
+                  schema:
+                    $ref: "#components/schemas/Category"
+      /centers:
+        get:
+          tags:
+            - Center
+          summary: Returns a list of all centers.
+          description: Returns a list of all centers, filterable by name and category.
+          parameters:
+            - name: name
+              in: query
+              required: false
+              schema:
+                type: string
+              description: Full name of part of the name of a center
+            - name: category
+              in: query
+              required: false
+              schema:
+                type: integer
+              description: Category Id
+          responses:
+            "200":
+              description: A JSON array of centers.
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      $ref: "#components/schemas/Center"
+        post:
+          tags:
+            - Center
+          summary: Post a center.
+          description: Post a center.
+          requestBody:
+            description: Center object
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: "#components/schemas/Center"
+          responses:
+            "201":
+              description: A JSON object of center.
+              content:
+                application/json:
+                  schema:
+                    $ref: "#components/schemas/Center"
+      /centers/{id}:
+        get:
+          tags:
+            - Center
+          summary: Returns one center.
+          description: Returns one centers from the given id.
+          parameters:
+            - name: id
+              in: path
+              required: true
+              schema:
+                type: integer
+              description: Center Id
+          responses:
+            "200":
+              description: A JSON object of center.
+              content:
+                application/json:
+                  schema:
+                    $ref: "#components/schemas/Center"
+        patch:
+          tags:
+            - Center
+          summary: Patch a center.
+          description: Patch an existing center.
+          parameters:
+            - name: id
+              in: path
+              required: true
+              schema:
+                type: integer
+              description: Center Id
+          requestBody:
+            description: Partial center object
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: "#components/schemas/Center"
+          responses:
+            "201":
+              description: A JSON object of center.
+              content:
+                application/json:
+                  schema:
+                    $ref: "#components/schemas/Center"
+        delete:
+          tags:
+            - Center
+          summary: Delete a center.
+          description: Delete an existing center.
+          parameters:
+            - name: id
+              in: path
+              required: true
+              schema:
+                type: integer
+              description: Center Id
+          responses:
+            "204":
+              description: The resource was deleted successfully.
+    components:
+        schemas:
+            Center:
+                type: object
+                required:
+                  - name
+                  - address
+                properties:
+                    id:
+                        type: integer
+                        format: int64
+                        readOnly: true
+                    name:
+                        type: string
+                    description:
+                        type: string
+                    address:
+                        type: string
+                    url:
+                        type: string
+                    category:
+                        type: array
+                        items:
+                            type: integer
+                            format: int64
+                    coordinates:
+                        type: string
+                        readOnly: true
+                    weather:
+                        type: string
+                        readOnly: true
+            Category:
+                type: object
+                required:
+                  - name
+                properties:
+                    id:
+                        type: integer
+                        format: int64
+                        readOnly: true
+                    name:
+                        type: string
